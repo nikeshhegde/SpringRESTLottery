@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.nikesh</groupId>
 	<artifactId>lottery</artifactId>
-	<version>${lottery.version}</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>lottery</name>
 	<description>REST Implementation of Lottery Ticket</description>
 
