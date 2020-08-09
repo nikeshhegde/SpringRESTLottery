@@ -34,7 +34,7 @@ import com.nikesh.lottery.util.TicketResult;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = LotteryApplication.class)
-@WebIntegrationTest
+@WebAppConfiguration
 public class LotteryServiceImplTest {
 
 	@Mock
