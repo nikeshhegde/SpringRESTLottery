@@ -1,8 +1,6 @@
 package com.nikesh.lottery.service.impl;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +18,6 @@ import com.nikesh.lottery.util.TicketResult;
 @RestController
 public class LotteryServiceImpl implements LotteryController {
 	
-	private static final Logger LOGGER = Logger.getLogger(LotteryServiceImpl.class.getName());
-
 	@Autowired
 	TicketInterface ticketService;
 
