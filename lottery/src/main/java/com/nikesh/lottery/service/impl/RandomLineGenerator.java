@@ -12,7 +12,7 @@ import com.nikesh.lottery.util.Constants;
 public class RandomLineGenerator implements TicketLineGenerator {
 
 	private int generateRandomLotteryNumber() {
-		Random rand = new Random(); // instance of random class
+		Random rand = new Random(System.currentTimeMillis()); // instance of random class
 		int upperbound = Constants.MAX_VALUE;
 		int rand_number = rand.nextInt(upperbound);
 		return rand_number;

@@ -1,6 +1,8 @@
 package com.nikesh.lottery.service.impl;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +19,8 @@ import com.nikesh.lottery.util.TicketResult;
 
 @RestController
 public class LotteryServiceImpl implements LotteryController {
+	
+	private static final Logger LOGGER = Logger.getLogger(LotteryServiceImpl.class.getName());
 
 	@Autowired
 	TicketInterface ticketService;
@@ -50,12 +54,14 @@ public class LotteryServiceImpl implements LotteryController {
 	@Override
 	public LotteryTicket amendTicketLine(Integer lineNumbers, Long ticketId) {
 		if (ticketId == null || ticketId <= 0)
-			throw new InvalidTicket("Invalid TicketId");
+			throw new InvalidRequestException("Invalid TicketId");
 		if (lineNumbers == null || lineNumbers <= 0)
 			throw new InvalidRequestException("Invalid Number of Lines");
 		LotteryTicket lotteryTicket = lotteryTicketRepository.findById(ticketId).get();
-		if (lotteryTicket == null)
-			throw new InvalidTicket("Invalid Ticket");
+		/*
+		 * LOGGER.log(Level.INFO, () -> "LotteryTiket " + lotteryTicket.getId()); if
+		 * (lotteryTicket == null) throw new InvalidTicket("Ticket not found");
+		 */
 		if (!lotteryTicket.isCheckedStatus()) {
 			for (int i = 0; i < lineNumbers; i++) {
 				lotteryTicket.addLine(ticketLineGenerator.generateLine());
@@ -70,10 +76,11 @@ public class LotteryServiceImpl implements LotteryController {
 	@Override
 	public TicketResult retrieveTicketStatus(Long ticketId) {
 		if (ticketId == null || ticketId <= 0)
-			throw new InvalidTicket("Invalid TicketId");
+			throw new InvalidRequestException("Invalid TicketId");
 		LotteryTicket lotteryTicket = lotteryTicketRepository.findById(ticketId).get();
-		if (lotteryTicket == null)
-			throw new InvalidTicket("Invalid Ticket");
+		/*
+		 * if (lotteryTicket == null) throw new InvalidTicket("Invalid Ticket");
+		 */
 		lotteryTicket.checkTicket();
 		lotteryTicketRepository.save(lotteryTicket);
 		TicketResult ticketResult = new TicketResult(lotteryTicket);
