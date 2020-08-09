@@ -2,7 +2,7 @@ package com.nikesh.lottery;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -15,14 +15,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.nikesh.lottery.exception.InvalidRequestException;
-import com.nikesh.lottery.exception.InvalidTicket;
 import com.nikesh.lottery.model.LotteryLine;
 import com.nikesh.lottery.model.LotteryTicket;
 import com.nikesh.lottery.service.LotteryTicketRepository;
